@@ -28,16 +28,19 @@ namespace BA371_assign1 {
 
             //for each Period
             for(int count = 1; count <= periods; count++) {
+                //initializes a new period
                 Period period = new Period();
                 period.Values = new List<DataPoint>();
-
-                while(lowInterest <= highInterest) {
+                float interest = lowInterest;
+                for(int interestCount = 0; interestCount <= intervals; interestCount++) {
                     DataPoint dataPoint = new DataPoint();
-                    dataPoint.capital = GetAmount(capital,lowInterest,count); //calculates capital at the given point
-                    dataPoint.interest = lowInterest;
+                    dataPoint.capital = GetAmount(capital,interest,count); //calculates capital at the given point
+                    dataPoint.interest = (float) Math.Round(interest,2);
                     period.Values.Add(dataPoint); //add an interval to the period
-                    lowInterest += interestStep;
+                    interest += interestStep;
+                    Console.WriteLine(interestCount);
                 }
+
                 compoundGraph.Add(period); //add the period to the arraylist
             }
             WriteFile(compoundGraph);
