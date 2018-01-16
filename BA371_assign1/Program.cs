@@ -30,12 +30,13 @@ namespace BA371_assign1 {
             for(int count = 1; count <= periods; count++) {
                 Period period = new Period();
                 period.Values = new List<DataPoint>();
-                //for each interest interval
-                for(float interest = lowInterest; interest <= highInterest; interest += interestStep) {
+
+                while(lowInterest <= highInterest) {
                     DataPoint dataPoint = new DataPoint();
-                    dataPoint.capital = GetAmount(capital,interest,count); //calculates capital at the given point
-                    dataPoint.interest = interest;
+                    dataPoint.capital = GetAmount(capital,lowInterest,count); //calculates capital at the given point
+                    dataPoint.interest = lowInterest;
                     period.Values.Add(dataPoint); //add an interval to the period
+                    lowInterest += interestStep;
                 }
                 compoundGraph.Add(period); //add the period to the arraylist
             }
