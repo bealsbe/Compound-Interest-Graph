@@ -13,25 +13,25 @@ namespace BA371_assign1 {
         }
 
         public struct DataPoint {
-            public double capital;
-            public double interest;
+            public float capital;
+            public float interest;
         }
 
         static void Main(string[] args) {
             List<Period> compoundGraph = new List<Period>();
-            double capital = GetUserInput("Starting Captial $",0,1000);
-            double lowInterest = GetUserInput("Low Interest Rate %",0,10);
-            double highInterest = GetUserInput("High Interet Rate %",(int) lowInterest,10);
+            float capital = GetUserInput("Starting Captial $",0,1000);
+            float lowInterest = GetUserInput("Low Interest Rate %",0,10);
+            float highInterest = GetUserInput("High Interet Rate %",(int) lowInterest,10);
             int intervals = (int) GetUserInput("How many intervals",1,25); //rounded down
             int periods = (int) GetUserInput("how many periods per inverval",1,25); //rounded down
-            double interestStep = Calc_Interval(lowInterest,highInterest,intervals);      //how much the interest incraments between intervals
+            float interestStep = Calc_Interval(lowInterest,highInterest,intervals);      //how much the interest incraments between intervals
 
             //for each Period
             for(int count = 1; count <= periods; count++) {
                 Period period = new Period();
                 period.Values = new List<DataPoint>();
                 //for each interest interval
-                for(double interest = lowInterest; interest <= highInterest; interest += interestStep) {
+                for(float interest = lowInterest; interest <= highInterest; interest += interestStep) {
                     DataPoint dataPoint = new DataPoint();
                     dataPoint.capital = GetAmount(capital,interest,count); //calculates capital at the given point
                     dataPoint.interest = interest;
@@ -56,7 +56,7 @@ namespace BA371_assign1 {
                 else {
                     Console.WriteLine("Bad Input: Expected input range from: " + minValue + " to " + maxValue);
                 }
-                attempt++; 
+                attempt++;
                 Console.WriteLine("Attempt: " + attempt + " of 3");
             } while(attempt < 3);
             ExitProgram();  //exit Program after three bad attempts
@@ -64,12 +64,12 @@ namespace BA371_assign1 {
         }
 
         //returns the amount for the given period and interest rate
-        static double GetAmount(double startingCaptial,double interestRate,int period) {
-            return startingCaptial * (Math.Pow(1 + (interestRate / 100),period));
+        static float GetAmount(float startingCaptial,float interestRate,int period) {
+            return startingCaptial * ((float)Math.Pow(1 + (interestRate / 100),period));
         }
 
         //calculates the difference between each interest inverval
-        static double Calc_Interval(double lowInterest,double highInterest,int intervals) {
+        static float Calc_Interval(float lowInterest,float highInterest,int intervals) {
             return (highInterest - lowInterest) / intervals;
         }
 
