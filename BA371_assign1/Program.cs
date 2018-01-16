@@ -39,7 +39,13 @@ namespace BA371_assign1 {
                 }
                 compoundGraph.Add(period); //add the period to the arraylist
             }
-            WriteFile(compoundGraph);
+
+            if(WriteFile(compoundGraph)) {
+                Console.WriteLine("Success!");
+            }
+            else {
+                Console.WriteLine("The was an problem writing to the file");
+            }
             ExitProgram();
         }
 
@@ -74,20 +80,26 @@ namespace BA371_assign1 {
         }
 
         //Write The Output file From Scratch
-        static void WriteFile(List<Period> compoundGraph) {
-            if(File.Exists("C:\\temp\\output.html")) {
-                File.Delete("C:\\temp\\output.html");
-            }
-            File.Create("C:\\temp\\output.html").Close();
-            Console.WriteLine("Writing to file C:\\temp\\output.html");
-            StreamWriter Writer = new StreamWriter("C:\\temp\\output.html");
-            string dataString = AppendData(compoundGraph);
+        static bool WriteFile(List<Period> compoundGraph) {
+            try {
+                if(File.Exists("C:\\temp\\output.html")) {
+                    File.Delete("C:\\temp\\output.html");
+                }
+                File.Create("C:\\temp\\output.html").Close();
+                Console.WriteLine("Writing to file C:\\temp\\output.html");
+                StreamWriter Writer = new StreamWriter("C:\\temp\\output.html");
+                string dataString = AppendData(compoundGraph);
 
-            //(HTML Text) + dataString + (HTML text)
-            string html = "<html> <head> <script type=\"text/javascript\" src=\"https://www.google.com/jsapi\"></script> <script type=\"text/javascript\"> google.load(\"visualization\", \"1\", {packages:[\"linechart\"]}); google.setOnLoadCallback(drawChart); function drawChart() { var data = google.visualization.arrayToDataTable([" + dataString + " ]); var chart = new google.visualization.LineChart(document.getElementById('chart_div')); chart.draw(data, { width: 1000, height: 500, legend: 'bottom', title: 'Compound Interest'})   } </script> </head> <body> <div id =\"chart_div\"></div> </body> </html>";
-            Writer.WriteLine(html);
-            Writer.Close();
-            Console.WriteLine("Success!");
+                //(HTML Text) + dataString + (HTML text)
+                string html = "<html> <head> <script type=\"text/javascript\" src=\"https://www.google.com/jsapi\"></script> <script type=\"text/javascript\"> google.load(\"visualization\", \"1\", {packages:[\"linechart\"]}); google.setOnLoadCallback(drawChart); function drawChart() { var data = google.visualization.arrayToDataTable([" + dataString + " ]); var chart = new google.visualization.LineChart(document.getElementById('chart_div')); chart.draw(data, { width: 1000, height: 500, legend: 'bottom', title: 'Compound Interest'})   } </script> </head> <body> <div id =\"chart_div\"></div> </body> </html>";
+                Writer.WriteLine(html);
+                Writer.Close();
+            }
+            catch(Exception e) {
+                return false;
+               //Console.WriteLine(e.Message.ToString());
+            }
+            return true;
         }
 
         //converts the Saved Data from memory into a string format that javascript can read
