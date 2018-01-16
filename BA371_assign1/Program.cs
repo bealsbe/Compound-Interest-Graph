@@ -8,17 +8,19 @@ using System.Threading.Tasks;
 namespace BA371_assign1 {
     class Program {
 
+        //struct that holds all the data for each period 
         public struct Period {
             public List<DataPoint> Values;
         }
 
+        //struct that represents a single point with captial and interest rate
         public struct DataPoint {
             public double capital;
             public double interest;
         }
 
         static void Main(string[] args) {
-            List<Period> compoundGraph = new List<Period>();
+            List<Period> compoundGraph = new List<Period>(); //an arraylist of all the periods in the graph
             double capital = GetUserInput("Starting Captial $",0,1000);
             double lowInterest = GetUserInput("Low Interest Rate %",0,10);
             double highInterest = GetUserInput("High Interet Rate %",(int) lowInterest,10);
@@ -97,7 +99,7 @@ namespace BA371_assign1 {
             }
             catch(Exception e) {
                 return false;
-               //Console.WriteLine(e.Message.ToString());
+               Console.WriteLine(e.Message.ToString());
             }
             return true;
         }
@@ -110,7 +112,7 @@ namespace BA371_assign1 {
                 dataString += ",'" + data.interest + "%'";
             }
             dataString += "],";
-            //adds each all the values 
+            //adds all the values 
             for(int index = 0; index < compoundGraph.Count; index++) {
                 dataString += "['" + (index + 1) + "'";
                 foreach(DataPoint data in compoundGraph[index].Values) {
