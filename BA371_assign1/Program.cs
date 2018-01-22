@@ -19,40 +19,51 @@ namespace BA371_assign1 {
             public float interest;
         }
 
-        static void Main(string[] args) {
-            List<Period> compoundGraph = new List<Period>();
-            float capital = GetUserInput("Starting Captial $",0,1000);
-            float lowInterest = GetUserInput("Low Interest Rate %",0,10);
-            float highInterest = GetUserInput("High Interet Rate %",(int) lowInterest,10);
-            int intervals = (int) GetUserInput("How many intervals",1,25); //rounded down
-            int periods = (int) GetUserInput("how many periods per inverval",1,25); //rounded down
-            float interestStep = Calc_Interval(lowInterest,highInterest,intervals);      //how much the interest incraments between intervals
+        static void Main() {
+            //calls a method that calculates all of the values for the compound graph
+            List<Period> compoundGraph = CalculateGraph();
 
-            //for each Period
-            for(int count = 1; count <= periods; count++) {
-                //initializes a new period
-                Period period = new Period();
-                period.Values = new List<DataPoint>();
-                float interest = lowInterest;
-                for(int interestCount = 0; interestCount <= intervals; interestCount++) {
-                    DataPoint dataPoint = new DataPoint();
-                    dataPoint.capital = GetAmount(capital,interest,count); //calculates capital at the given point
-                    dataPoint.interest = (float) Math.Round(interest,2);
-                    period.Values.Add(dataPoint); //add an interval to the period
-                    interest += interestStep;
-                    Console.WriteLine(interestCount);
-                }
-
-                compoundGraph.Add(period); //add the period to the arraylist
-            }
-
-            if(WriteFile(compoundGraph)) {
+            //Calls WriteFile which returns true if successful and false if it fails. 
+            if (WriteFile(compoundGraph)) {
                 Console.WriteLine("Success!");
             }
             else {
                 Console.WriteLine("The was an problem writing to the file");
             }
+
             ExitProgram();
+        }
+
+        static List<Period> CalculateGraph() {
+            float capital = GetUserInput("Starting Captial $", 0, 1000);
+            float lowInterest = GetUserInput("Low Interest Rate %", 0, 10);
+            float highInterest = GetUserInput("High Interet Rate %", (int)lowInterest, 10);
+            int intervals = (int)GetUserInput("How many intervals", 1, 25); //rounded down
+            int periods = (int)GetUserInput("how many periods per inverval", 1, 25); //rounded down
+
+            List<Period> compoundGraph = new List<Period>();
+            float interestStep = Calc_Interval(lowInterest, highInterest, intervals);      //how much the interest incraments between intervals
+            //for each Period
+            for (int count = 1; count <= periods; count++)
+            {
+                //initializes a new period
+                Period period = new Period();
+                period.Values = new List<DataPoint>();
+                float interest = lowInterest;
+
+                //for each interest interval
+                for (int interestCount = 0; interestCount <= intervals; interestCount++)
+                {
+                    DataPoint dataPoint = new DataPoint();
+                    dataPoint.capital = GetAmount(capital, interest, count); //calculates capital at the given point
+                    dataPoint.interest = (float)Math.Round(interest, 2);
+                    period.Values.Add(dataPoint); //add an interval to the period
+                    interest += interestStep;
+                }
+
+                compoundGraph.Add(period); //add the period to the arraylist
+            }
+            return compoundGraph;
         }
 
         //Makes three attemps to get valid input from the user. Exits the application after the third failed attempt
@@ -71,7 +82,7 @@ namespace BA371_assign1 {
                 attempt++;
                 Console.WriteLine("Attempt: " + attempt + " of 3");
             } while(attempt < 3);
-            ExitProgram();  //exit Program after three bad attempts
+            ExitProgram();  //exit program after three bad attempts
             return 0;
         }
 
@@ -94,28 +105,47 @@ namespace BA371_assign1 {
                 File.Create("C:\\temp\\output.html").Close();
                 Console.WriteLine("Writing to file C:\\temp\\output.html");
                 StreamWriter Writer = new StreamWriter("C:\\temp\\output.html");
-                string dataString = AppendData(compoundGraph);
 
-                //(HTML Text) + dataString + (HTML text)
-                string html = "<html> <head> <script type=\"text/javascript\" src=\"https://www.google.com/jsapi\"></script> <script type=\"text/javascript\"> google.load(\"visualization\", \"1\", {packages:[\"linechart\"]}); google.setOnLoadCallback(drawChart); function drawChart() { var data = google.visualization.arrayToDataTable([" + dataString + " ]); var chart = new google.visualization.LineChart(document.getElementById('chart_div')); chart.draw(data, { width: 1000, height: 500, legend: 'bottom', title: 'Compound Interest'})   } </script> </head> <body> <div id =\"chart_div\"></div> </body> </html>";
+                //String for the dynmically created html file
+                string html =
+                    @"<html>\n"+
+                        "<head>\n"+
+                             "<script type =\"text/javascript\" src=\"https://www.google.com/jsapi\"></script>\n" +
+                             "<script type =\"text/javascript\">\n"+
+                                 "google.load(\"visualization\", \"1\", {packages:[\"linechart\"]});\n"+
+                                 "google.setOnLoadCallback(drawChart);\n"+
+                                  "function drawChart(){\n"+
+                                    "var data = google.visualization.arrayToDataTable([" + AppendData(compoundGraph) + "]);\n"+ 
+                                    "var chart = new google.visualization.LineChart(document.getElementById('chart_div'));\n"+
+                                    "chart.draw(data, { width: 1000, height: 500, legend: 'bottom', title: 'Compound Interest'})\n"+
+			                        "}"+
+                                  "</script>\n"+
+                            "</head>\n"+
+                             "<body>\n"+
+                                "<div id =\"chart_div\"></div>\n"+
+                             "</body>\n"+
+                    "</ html>\n";
                 Writer.WriteLine(html);
                 Writer.Close();
             }
             catch(Exception e) {
+                //prints out the exact error message to help with troubleshooting
+                Console.WriteLine(e.Message.ToString());
                 return false;
-               Console.WriteLine(e.Message.ToString());
             }
             return true;
         }
 
-        //converts the Saved Data from memory into a string format that javascript can read
+        //converts the Saved Data from memory into a table format that javascript can read
         static string AppendData(List<Period> compoundGraph) {
+
             //sets up labels
             string dataString = "['Period'";
             foreach(DataPoint data in compoundGraph[0].Values) {
                 dataString += ",'" + data.interest + "%'";
             }
             dataString += "],";
+
             //adds all the values 
             for(int index = 0; index < compoundGraph.Count; index++) {
                 dataString += "['" + (index + 1) + "'";
