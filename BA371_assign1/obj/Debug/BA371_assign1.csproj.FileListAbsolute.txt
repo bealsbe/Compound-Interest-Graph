@@ -11,3 +11,17 @@ C:\Users\beals\OneDrive\Coding Projects\Oregon State University\BA-371\Compound-
 C:\Users\beals\OneDrive\Coding Projects\Oregon State University\BA-371\Compound-Interest-Graph\BA371_assign1\obj\Debug\BA371_assign1.csprojResolveAssemblyReference.cache
 C:\Users\beals\OneDrive\Coding Projects\Oregon State University\BA-371\Compound-Interest-Graph\BA371_assign1\obj\Debug\BA371_assign1.exe
 C:\Users\beals\OneDrive\Coding Projects\Oregon State University\BA-371\Compound-Interest-Graph\BA371_assign1\obj\Debug\BA371_assign1.pdb
+G:\assignment_1\code\Compound-Interest-Graph\BA371_assign1\bin\Debug\BA371_assign1.exe.config
+G:\assignment_1\code\Compound-Interest-Graph\BA371_assign1\bin\Debug\BA371_assign1.exe
+G:\assignment_1\code\Compound-Interest-Graph\BA371_assign1\bin\Debug\BA371_assign1.pdb
+G:\assignment_1\code\Compound-Interest-Graph\BA371_assign1\obj\Debug\BA371_assign1.csprojResolveAssemblyReference.cache
+G:\assignment_1\code\Compound-Interest-Graph\BA371_assign1\obj\Debug\BA371_assign1.csproj.CoreCompileInputs.cache
+G:\assignment_1\code\Compound-Interest-Graph\BA371_assign1\obj\Debug\BA371_assign1.exe
+G:\assignment_1\code\Compound-Interest-Graph\BA371_assign1\obj\Debug\BA371_assign1.pdb
+Z:\Compound-Interest-Graph\BA371_assign1\bin\Debug\BA371_assign1.exe.config
+Z:\Compound-Interest-Graph\BA371_assign1\bin\Debug\BA371_assign1.exe
+Z:\Compound-Interest-Graph\BA371_assign1\bin\Debug\BA371_assign1.pdb
+Z:\Compound-Interest-Graph\BA371_assign1\obj\Debug\BA371_assign1.csprojResolveAssemblyReference.cache
+Z:\Compound-Interest-Graph\BA371_assign1\obj\Debug\BA371_assign1.csproj.CoreCompileInputs.cache
+Z:\Compound-Interest-Graph\BA371_assign1\obj\Debug\BA371_assign1.exe
+Z:\Compound-Interest-Graph\BA371_assign1\obj\Debug\BA371_assign1.pdb

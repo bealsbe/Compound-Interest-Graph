@@ -55,7 +55,6 @@ namespace BA371_assign1 {
                     period.Values.Add(dataPoint); //add an interval to the period
                     interest += interestStep;
                 }
-
                 compoundGraph.Add(period); //add the period to the arraylist
             }
             return compoundGraph;
@@ -82,8 +81,8 @@ namespace BA371_assign1 {
         }
 
         //returns the amount for the given period and interest rate
-        static float GetAmount(float startingCaptial , float interestRate , int period) {
-            return startingCaptial * ((float)Math.Pow(1 + (interestRate / 100) , period));
+        static float GetAmount(float captial , float interestRate , int period) {
+            return captial * ((float)Math.Pow(1 + (interestRate / 100) , period));
         }
 
         //calculates the difference between each interest inverval
@@ -95,6 +94,9 @@ namespace BA371_assign1 {
         static bool WriteFile(List<Period> compoundGraph) {
             string timestamp = string.Format("{0:yyyy-MM-dd_hh-mm-ss-tt}" , DateTime.Now);
             try {
+                if (!Directory.Exists("C:\\temp")) {
+                    Directory.CreateDirectory("C:\\temp");
+                }
                 Console.WriteLine("Writing to file C:\\temp\\" + timestamp + ".html");
                 StreamWriter Writer = new StreamWriter("C:\\temp\\" + timestamp + ".html");
 
