@@ -25,3 +25,10 @@ Z:\Compound-Interest-Graph\BA371_assign1\obj\Debug\BA371_assign1.csprojResolveAs
 Z:\Compound-Interest-Graph\BA371_assign1\obj\Debug\BA371_assign1.csproj.CoreCompileInputs.cache
 Z:\Compound-Interest-Graph\BA371_assign1\obj\Debug\BA371_assign1.exe
 Z:\Compound-Interest-Graph\BA371_assign1\obj\Debug\BA371_assign1.pdb
+O:\Compound-Interest-Graph\BA371_assign1\bin\Debug\BA371_assign1.exe.config
+O:\Compound-Interest-Graph\BA371_assign1\bin\Debug\BA371_assign1.exe
+O:\Compound-Interest-Graph\BA371_assign1\bin\Debug\BA371_assign1.pdb
+O:\Compound-Interest-Graph\BA371_assign1\obj\Debug\BA371_assign1.csprojResolveAssemblyReference.cache
+O:\Compound-Interest-Graph\BA371_assign1\obj\Debug\BA371_assign1.csproj.CoreCompileInputs.cache
+O:\Compound-Interest-Graph\BA371_assign1\obj\Debug\BA371_assign1.exe
+O:\Compound-Interest-Graph\BA371_assign1\obj\Debug\BA371_assign1.pdb
