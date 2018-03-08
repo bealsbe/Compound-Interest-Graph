@@ -32,3 +32,10 @@ O:\Compound-Interest-Graph\BA371_assign1\obj\Debug\BA371_assign1.csprojResolveAs
 O:\Compound-Interest-Graph\BA371_assign1\obj\Debug\BA371_assign1.csproj.CoreCompileInputs.cache
 O:\Compound-Interest-Graph\BA371_assign1\obj\Debug\BA371_assign1.exe
 O:\Compound-Interest-Graph\BA371_assign1\obj\Debug\BA371_assign1.pdb
+C:\Users\beals\OneDrive\Coding Projects\Compound-Interest-Graph\BA371_assign1\bin\Debug\BA371_assign1.exe.config
+C:\Users\beals\OneDrive\Coding Projects\Compound-Interest-Graph\BA371_assign1\bin\Debug\BA371_assign1.exe
+C:\Users\beals\OneDrive\Coding Projects\Compound-Interest-Graph\BA371_assign1\bin\Debug\BA371_assign1.pdb
+C:\Users\beals\OneDrive\Coding Projects\Compound-Interest-Graph\BA371_assign1\obj\Debug\BA371_assign1.csprojResolveAssemblyReference.cache
+C:\Users\beals\OneDrive\Coding Projects\Compound-Interest-Graph\BA371_assign1\obj\Debug\BA371_assign1.csproj.CoreCompileInputs.cache
+C:\Users\beals\OneDrive\Coding Projects\Compound-Interest-Graph\BA371_assign1\obj\Debug\BA371_assign1.exe
+C:\Users\beals\OneDrive\Coding Projects\Compound-Interest-Graph\BA371_assign1\obj\Debug\BA371_assign1.pdb

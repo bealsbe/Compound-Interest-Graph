@@ -1,0 +1,65 @@
+﻿@model Website.Models.CompoundGraph
+
+<html>
+<head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+        google.load("visualization", "1", { packages: ["linechart"] });
+        google.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                @Html.Raw(Model.AppendData())
+            ]);
+            var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+            chart.draw(data, { width: 1000, height: 500, legend: 'bottom', title: 'Compound Interest' })
+        }
+
+        function checkInput() {
+
+            if (document.forms["userInput"]["startingCapital"] > 1000) {
+                alert("Capital can not exceed 1000")
+                return false;
+            }
+            return true;
+
+        }
+    </script>
+</head>
+<body>
+    <div id="inputData">
+        @using(Html.BeginForm("Index" , "Home" , FormMethod.Post , new { @id = "userInput" }))
+        {
+            <table>
+                <tr>
+                    <td>Starting Captial</td>
+                    <td><input type="text" name="startingCaptial" required /></td>
+                </tr>
+                <tr>
+                    <td>Low Interest</td>
+                    <td><input type="text" name="lowInterest" required /></td>
+                </tr>
+                <tr>
+                    <td>High Interest</td>
+                    <td> <input type="text" name="highInterest" required /></td>
+                </tr>
+                <tr>
+                    <td>Intervals</td>
+                    <td><input type="text" name="intervals" required /></td>
+                </tr>
+                <tr>
+                    <td>Periods</td>
+                    <td>
+                        <input type="text" name="periods" required />
+                    </td>
+                </tr>
+
+            </table>
+            <input type="submit" value="Submit">
+
+        }
+    </div>
+
+    <div id="chart_div" />
+</body>
+</html>
